@@ -1,0 +1,32 @@
+*{
+    background-color: aquamarine;
+}
+
+
+form{
+
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+background-color: blue;
+width: 200px;
+padding: 40px;
+border-radius: 20px ;
+box-shadow: 4px 0px 15px;
+
+}
+form #L {
+
+    background-color: blue;
+    margin: 7px;
+    padding: 5px;
+}
+table{
+    width: 50%;
+    margin: 20px;
+    background-color: black;
+    
+}
+
+h2 {
+    
+    text-align: center;
+}

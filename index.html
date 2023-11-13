@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Almacen</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="javota.js"></script>
+</head>
+<body>
+   <h1>Productos</h1>
+
+    <form id="productForm">
+        <label id="L">ID<input type="text" id="productId" placeholder="ingrese id"></label> <hr>
+        <label id="L">Nombre de producto<input type="text" id="productName" placeholder="ingresar producto"></label><hr>
+        <label id="L">Descripción<input type="text" id="productDescription" placeholder="ingrese descripción"></label><hr>
+        <label id="L">Precio<input type="text" id="productPrice" placeholder="ingrese precio"></label><hr>
+        <button type="button" onclick="agregarProducto()">Agregar</button> 
+    </form>
+
+    
+    <table id="productTable">
+        <h2>Productos Guardados</h2>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+        </tr>
+    </table>
+
+    <script>
+        function agregarProducto() {
+            // Obtener los valores de los inputs
+            var productId = document.getElementById('productId').value;
+            var productName = document.getElementById('productName').value;
+            var productDescription = document.getElementById('productDescription').value;
+            var productPrice = document.getElementById('productPrice').value;
+
+            // Crear un objeto con los datos del producto
+            var product = {
+                id: productId,
+                name: productName,
+                description: productDescription,
+                price: productPrice
+            };
+
+        
+            var productList = JSON.parse(localStorage.getItem('productos')) || [];
+
+            // Agregar el nuevo producto a la lista
+            productList.push(product);
+
+    
+            localStorage.setItem('productos', JSON.stringify(productList));
+
+    
+            document.getElementById('productForm').reset();
+
+        
+            mostrarProductos();
+        }
+
+        function mostrarProductos() {
+            var productList = JSON.parse(localStorage.getItem('productos')) || [];
+            var table = document.getElementById('productTable');
+
+            
+            table.innerHTML = '<tr><th>ID</th><th>Nombre</th><th>Descripción</th><th>Precio</th></tr>';
+
+            
+            productList.forEach(function(product) {
+                var row = table.insertRow(-1);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+
+                cell1.innerHTML = product.id;
+                cell2.innerHTML = product.name;
+                cell3.innerHTML = product.description;
+                cell4.innerHTML = product.price;
+            });
+        }
+
+        // Mostrar los productos al cargar la página
+        mostrarProductos();
+    </script>
+</body>
+</html>
